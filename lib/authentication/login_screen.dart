@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 import 'package:video_meet_app/variables.dart';
-import 'package:video_meet_app/authentication/login_screen.dart';
-import 'package:video_meet_app/authentication/register_screen.dart';
 
-class NavigateAuthScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _NavigateAuthScreenState createState() => _NavigateAuthScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _NavigateAuthScreenState extends State<NavigateAuthScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,12 +49,44 @@ class _NavigateAuthScreenState extends State<NavigateAuthScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.7,
+                    child: TextField(
+                      style: myStyle(18, Colors.black),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        prefixIcon: Icon(Icons.email),
+                        hintStyle: myStyle(20, Colors.grey, FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.7,
+                    child: TextField(
+                      style: myStyle(18, Colors.black),
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        prefixIcon: Icon(Icons.lock),
+                        hintStyle: myStyle(20, Colors.grey, FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
                   InkWell(
                     onTap: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginScreen())),
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
-                      height: 60,
+                      height: 45,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: GradientColors.beautifulGreen,
@@ -66,34 +96,11 @@ class _NavigateAuthScreenState extends State<NavigateAuthScreen> {
                       child: Center(
                         child: Text(
                           "SIGN IN",
-                          style: myStyle(30, Colors.white),
+                          style: myStyle(35, Colors.white),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 40),
-                  InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterScreen())),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: GradientColors.beautifulGreen,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "SIGN UP",
-                          style: myStyle(30, Colors.white),
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
