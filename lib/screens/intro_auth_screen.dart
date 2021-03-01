@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:video_meet_app/variables.dart';
+import 'package:video_meet_app/authentication/navigate_auth_screen.dart';
 
 class IntroAuthScreen extends StatefulWidget {
   @override
@@ -50,7 +51,8 @@ class _IntroAuthScreenState extends State<IntroAuthScreen> {
                 titleTextStyle: myStyle(20, Colors.black))),
       ],
       onDone: () {
-        print("Done");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NavigateAuthScreen()));
       },
       onSkip: () {},
       showSkipButton: true,
