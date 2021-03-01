@@ -1,9 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.video_meet_app">
+    package="com.example.video_meet_app" xmlns:tools="http://schemas.android.com/tools">
    <application
         android:label="video_meet_app"
         android:icon="@mipmap/ic_launcher">
         <activity
+            tools:replace="android:label"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
