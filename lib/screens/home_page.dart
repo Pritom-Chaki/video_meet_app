@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,11 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text("Home"),
       ),
-      body: Container(color: Colors.green),
+      body: InkWell(
+          onTap: () {
+            FirebaseAuth.instance.signOut();
+          },
+          child: Container(color: Colors.green)),
     );
   }
 }

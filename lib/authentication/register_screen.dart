@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 import 'package:video_meet_app/authentication/login_screen.dart';
@@ -10,6 +11,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: MediaQuery.of(context).size.width / 1.7,
                     child: TextField(
                       style: myStyle(18, Colors.black),
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: "Email",
@@ -73,6 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: MediaQuery.of(context).size.width / 1.7,
                     child: TextField(
                       style: myStyle(18, Colors.black),
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         prefixIcon: Icon(Icons.lock),
@@ -87,6 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: MediaQuery.of(context).size.width / 1.7,
                     child: TextField(
                       style: myStyle(18, Colors.black),
+                      controller: usernameController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: "Username",
@@ -99,8 +106,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 40,
                   ),
                   InkWell(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen())),
+                    onTap: () {
+                      try {
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text)
+                            .then((signedUser) {
+                          userCollection.doc(signedUser.user.uid).set({
+                            'username': usernameController.text,
+                            'email': emailController.text,
+                            'password': passwordController.text,
+                            'uid': signedUser.user.uid,
+                          });
+                        });
+                        Navigator.pop(context);
+                      } catch (e) {
+                        var snackbar = SnackBar(
+                            content: Text(
+                          e.toString(),
+                          style: myStyle(20),
+                        ));
+                        Scaffold.of(context).showSnackBar(snackbar);
+                      }
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
                       height: 45,
