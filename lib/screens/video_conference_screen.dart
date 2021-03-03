@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_meet_app/variables.dart';
+import 'package:video_meet_app/videoConference/create_meeting.dart';
+import 'package:video_meet_app/videoConference/join_meeting.dart';
 
 class VideoConferenceScreen extends StatefulWidget {
   @override
@@ -48,8 +50,10 @@ class _VideoConferenceScreenState extends State<VideoConferenceScreen>
           ],
         ),
       ),
-
-      body: TabBarView(children: ),
+      body: TabBarView(controller: tabController, children: [
+        JoinMeeting(),
+        CreateMeeting(),
+      ]),
     );
   }
 }
