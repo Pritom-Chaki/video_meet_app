@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
-import 'package:video_meet_app/authentication/login_screen.dart';
+
 
 import '../variables.dart';
 
