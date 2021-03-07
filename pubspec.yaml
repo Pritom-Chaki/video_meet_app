@@ -34,7 +34,7 @@ dependencies:
   pin_code_fields:
   flutter_custom_clippers:
   image_picker:
-  jitsi_meet:
+  jitsi_meet: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
