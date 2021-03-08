@@ -116,8 +116,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: CircleAvatar(
                     radius: 64,
-                    backgroundImage: NetworkImage(
-                        'http://sarangglobaltours.com/wp-content/uploads/2014/02/team.png'),
+                    backgroundImage:
+                        NetworkImage('assets/images/profilepic.png'),
                   ),
                 ),
                 Center(
@@ -130,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: myStyle(40, Colors.black),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 300),
+                      SizedBox(height: 30),
                       InkWell(
                         onTap: () => openEditProfileDialoge(),
                         child: Container(

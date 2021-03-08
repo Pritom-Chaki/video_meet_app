@@ -7,7 +7,7 @@ import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag_enum.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:video_meet_app/variables.dart';
 
 class JoinMeeting extends StatefulWidget {
@@ -51,9 +51,9 @@ class _JoinMeetingState extends State<JoinMeeting> {
         ..userDisplayName =
             nameController.text == "" ? userName : nameController.text
         ..audioMuted = isAudioMuted
-        ..videoMuted = isVideoMuted
-        //..featureFlags.addAll();
-        ..featureFlag = featureflags as FeatureFlag;
+        ..videoMuted = isVideoMuted;
+      //..featureFlags.addAll();
+      //  ..featureFlag = featureflags as FeatureFlag;
       // ..getFeatureFlags();
       // ..featureFlags.addAll(featureflags);
 
@@ -80,15 +80,32 @@ class _JoinMeetingState extends State<JoinMeeting> {
                 "Room Code",
                 style: myStyle(20),
               ),
+              SizedBox(
+                height: 24,
+              ),
               PinCodeTextField(
                 controller: roomController,
-                length: 6,
-                autoDisposeControllers: false,
-                animationType: AnimationType.fade,
-                pinTheme: PinTheme(shape: PinCodeFieldShape.underline),
-                animationDuration: Duration(microseconds: 300),
-                onChanged: (value) {},
-                appContext: null,
+                pinTextStyle: myStyle(20),
+                maxLength: 6,
+                autofocus: true,
+                highlight: true,
+                highlightColor: Colors.blue,
+                hasUnderline: false,
+                pinBoxBorderWidth: 0.0,
+                pinBoxWidth: 45,
+                pinBoxHeight: 45,
+                wrapAlignment: WrapAlignment.spaceAround,
+                defaultBorderColor: Colors.black,
+                pinTextAnimatedSwitcherTransition:
+                    ProvidedPinBoxTextAnimation.scalingTransition,
+                pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
+                highlightAnimationBeginColor: Colors.black,
+                highlightAnimationEndColor: Colors.white12,
+                keyboardType: TextInputType.emailAddress,
+                onTextChanged: (value) {},
+              ),
+              SizedBox(
+                height: 24,
               ),
               TextField(
                   controller: nameController,
@@ -148,9 +165,11 @@ class _JoinMeetingState extends State<JoinMeeting> {
                     gradient: LinearGradient(
                         colors: GradientColors.facebookMessenger),
                   ),
-                  child: Text(
-                    "Join Meeting",
-                    style: myStyle(20, Colors.white),
+                  child: Center(
+                    child: Text(
+                      "Join Meeting",
+                      style: myStyle(20, Colors.white),
+                    ),
                   ),
                 ),
               )

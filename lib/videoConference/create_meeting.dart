@@ -10,7 +10,9 @@ class CreateMeeting extends StatefulWidget {
 
 class _CreateMeetingState extends State<CreateMeeting> {
   createCode() {
-    code = Uuid().v1().substring(0, 6);
+    setState(() {
+      code = Uuid().v1().substring(0, 6);
+    });
   }
 
   String code = "";
@@ -56,9 +58,11 @@ class _CreateMeetingState extends State<CreateMeeting> {
                 gradient:
                     LinearGradient(colors: GradientColors.facebookMessenger),
               ),
-              child: Text(
-                "Create Code",
-                style: myStyle(20, Colors.white),
+              child: Center(
+                child: Text(
+                  "Create Code",
+                  style: myStyle(20, Colors.white),
+                ),
               ),
             ),
           )

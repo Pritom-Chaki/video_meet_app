@@ -31,7 +31,7 @@ dependencies:
   uuid:
   intl:
   introduction_screen:
-  pin_code_fields:
+  pin_code_text_field: ^1.7.1
   flutter_custom_clippers:
   image_picker:
   jitsi_meet: ^2.0.0
