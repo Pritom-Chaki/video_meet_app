@@ -40,6 +40,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Navigator.pop(context);
   }
 
+  signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   openEditProfileDialoge() async {
     return showDialog(
         context: context,
@@ -138,10 +142,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 40,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                  colors: GradientColors.cherry)),
+                                  colors: GradientColors.skyBlue)),
                           child: Center(
                             child: Text(
                               "Edit Profile",
+                              style: myStyle(17, Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      InkWell(
+                        onTap: () => signOut(),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: GradientColors.cherry)),
+                          child: Center(
+                            child: Text(
+                              "LogOut",
                               style: myStyle(17, Colors.white),
                             ),
                           ),
